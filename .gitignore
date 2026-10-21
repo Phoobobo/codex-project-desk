@@ -1,0 +1,9 @@
+node_modules
+dist/
+output/
+.cache/
+private-data/
+.env
+.env.*
+*.editing
+.DS_Store

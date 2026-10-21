@@ -1,0 +1,29 @@
+{
+  "name": "codex-project-desk",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "tsc --noEmit && node scripts/build.mjs && node --test test/*.test.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "preview": "node scripts/mock-preview.mjs",
+    "pack": "node scripts/pack.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "2.0.3",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/jsdom": "30.0.0",
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "jsdom": "29.1.1",
+    "typescript": "7.0.2"
+  }
+}

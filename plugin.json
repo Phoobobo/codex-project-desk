@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "project-desk",
+  "version": "0.2.0",
+  "description": "聚焦待验收、项目里程碑和用户问题，支持选择 Codex 项目。",
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "interface": {
+        "displayName": "项目工作台",
+        "shortDescription": "验收 · 里程碑 · 问题",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "category": "Productivity",
+        "composerIcon": "./assets/decision-desk-mark-v1.png",
+        "logo": "./assets/decision-desk-mark-v1.png",
+        "brandColor": "#184D42"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "project-desk-local",
+  "interface": {
+    "displayName": "Project Desk Local"
+  },
+  "plugins": [
+    {
+      "name": "project-desk",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
