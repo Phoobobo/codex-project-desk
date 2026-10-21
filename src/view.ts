@@ -95,9 +95,9 @@ export function mount(root:HTMLElement,host:Host){
   const prompt=projectId?`使用 project-desk 技能同步我选择的 Codex 项目，projectId=${JSON.stringify(projectId)}。先读取当前工作台与宿主项目目录，只读取该项目所属聊天。整理我需要验收的事项、我提出的问题和目标里程碑；保留卡点、负责聊天及证据，不把 Agent 子任务当作项目里程碑。只更新工作台投影，不给其他聊天发消息，不执行项目工作。`:'使用 project-desk 技能连接或更新 Codex 项目目录：调用宿主 list_projects，并同步到工作台目录。仅列出项目元数据，不读取项目聊天内容。';
   if(!host.requestSync){showSyncFallback(prompt);return;}
   syncing=true;sync.disabled=true;say('正在把同步请求发送到当前聊天…');
-  try{await host.requestSync(prompt);say('同步请求已发送到当前聊天。完成后，视图会自动读取更新。');}catch{showSyncFallback(prompt);}finally{syncing=false;sync.disabled=false;}
+  try{await host.requestSync(prompt);say('同步请求已发送到当前聊天。完成后，视图会自动读取更新。');}catch{showSyncFallback(prompt,true);}finally{syncing=false;sync.disabled=false;}
  }
- function showSyncFallback(prompt:string){say('此宿主不支持直接请求同步。复制下面的内容到当前 Codex 聊天：');const field=el('textarea','sync-prompt');field.value=prompt;field.readOnly=true;field.setAttribute('aria-label','项目同步提示词');notice.append(field);}
+ function showSyncFallback(prompt:string,uncertain=false){say(uncertain?'未能确认同步请求是否送达。请先查看当前聊天；若未收到，再复制下面的内容：':'此宿主不支持直接请求同步。复制下面的内容到当前 Codex 聊天：');const field=el('textarea','sync-prompt');field.value=prompt;field.readOnly=true;field.setAttribute('aria-label','项目同步提示词');notice.append(field);}
  async function read(){
   // A selection made during a read is handled serially; old-project data never renders.
   for(let attempt=0;attempt<5;attempt++){
