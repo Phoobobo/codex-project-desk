@@ -8,7 +8,8 @@ const ui=await build({entryPoints:['src/ui.ts'],bundle:true,write:false,format:'
 const css=await readFile('src/style.css','utf8');
 const html=`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>项目工作台</title><style>${css}</style></head><body><div id="app"></div><script>${ui.outputFiles[0].text.replaceAll('</script','<\\/script')}</script></body></html>`;
 await writeFile('dist/desk.html',html);
-const server=await build({entryPoints:['src/server.ts'],outfile:'dist/server.mjs',bundle:true,platform:'node',format:'esm',target:'node22',metafile:true,banner:{js:'import { createRequire } from "node:module"; const require = createRequire(import.meta.url);'}});
+const iconDataUri='data:image/png;base64,'+(await readFile('assets/decision-desk-mark-v1.png')).toString('base64');
+const server=await build({entryPoints:['src/server.ts'],define:{PROJECT_DESK_ICON_DATA_URI:JSON.stringify(iconDataUri)},outfile:'dist/server.mjs',bundle:true,platform:'node',format:'esm',target:'node22',metafile:true,banner:{js:'import { createRequire } from "node:module"; const require = createRequire(import.meta.url);'}});
 
 const packages=new Set([...Object.keys(ui.metafile.inputs),...Object.keys(server.metafile.inputs)].flatMap(file=>{const m=file.match(/^(.*node_modules\/(?:@[^/]+\/)?[^/]+)\//);return m?[m[1]]:[];}));
 const notices=[];

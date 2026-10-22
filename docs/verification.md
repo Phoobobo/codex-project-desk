@@ -50,3 +50,9 @@ Source, documentation, public fixture screenshots, generated bundles and reachab
 ## Remaining host acceptance
 
 This evidence does not establish that a particular installed Codex instance has loaded version 0.2.0. Installing the new plugin, live project catalog sync, real chat evidence extraction, current-conversation request delivery and real owner-chat navigation still require acceptance in the target host. No host restart or replacement of an existing installation was performed by this verification.
+
+## Sidebar icon correction in 0.2.1
+
+On 2026-10-22, the installed 0.2.0 server returned no `icons` in either MCP server information or its UI entrypoint. Listing-only `logo` and `composerIcon` metadata therefore did not supply the sidebar discovery path. Version 0.2.1 advertises the same PNG through MCP server `icons`, embedded as a data URI. The existing source and standalone-bundle tests now verify the advertised image hash against the branding asset; all 19 checks pass. The bundle test has no asset directory, so it also verifies that icon discovery needs no extra file access.
+
+This is metadata and packaging verification. A running desktop must rediscover the new server metadata before its sidebar can show the corrected icon; a live sidebar screenshot is not included in this patch. The earlier browser screenshots describe the unchanged 0.2.0 layout.

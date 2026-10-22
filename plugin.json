@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "project-desk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "聚焦待验收、项目里程碑和用户问题，支持选择 Codex 项目。",
   "extensions": {
     "com.openai": {
